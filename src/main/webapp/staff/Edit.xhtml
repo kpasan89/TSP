@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="StaffEditDlg" widgetVar="StaffEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditStaffTitle}">
+            <h:form id="StaffEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{staffController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditStaffLabel_designation}" for="designation" />
+                        <p:selectOneMenu id="designation" value="#{staffController.selected.designation}" >
+                            <f:selectItem itemLabel="Select Designation"></f:selectItem>
+                            <f:selectItems value="#{enumController.designations}"
+                                           var="item"
+                                           itemValue="#{item}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditStaffLabel_institution}" for="institution" />
+                        <p:selectOneMenu id="institution" value="#{staffController.selected.institution}" >
+                            <f:selectItem itemLabel="Select Institution"></f:selectItem>
+                            <f:selectItems value="#{institutionController.itemsAvailableSelectOne}"
+                                           var="institutionItem"
+                                           itemValue="#{institutionItem}"
+                                           itemLabel="#{institutionItem.name}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditStaffLabel_tittle}" for="tittle" />
+                        <p:selectOneMenu id="tittle" value="#{staffController.selected.tittle}" >
+                            <f:selectItems value="#{enumController.tittles}"
+                                           var="item"
+                                           itemValue="#{item}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditStaffLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{staffController.selected.name}" title="#{bundle.EditStaffTitle_name}" />
+                        <p:outputLabel value="#{bundle.EditStaffLabel_gender}" for="gender" />
+                        <p:selectOneMenu id="gender" value="#{staffController.selected.gender}" >
+                            <f:selectItems value="#{enumController.genders}"
+                                           var="item"
+                                           itemValue="#{item}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditStaffLabel_age}" for="age" />
+                        <p:inputText id="age" value="#{staffController.selected.age}" title="#{bundle.EditStaffTitle_age}" />
+                        <p:outputLabel value="#{bundle.EditStaffLabel_code}" for="code" />
+                        <p:inputText id="code" value="#{staffController.selected.code}" title="#{bundle.EditStaffTitle_code}" />
+                        <p:outputLabel value="#{bundle.EditStaffLabel_comments}" for="comments" />
+                        <p:inputTextarea rows="4" cols="30" id="comments" value="#{staffController.selected.comments}" title="#{bundle.EditStaffTitle_comments}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{staffController.update}" value="#{bundle.Save}" update="display,:StaffListForm:datalist,:growl" oncomplete="handleSubmit(args, 'StaffEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="StaffEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

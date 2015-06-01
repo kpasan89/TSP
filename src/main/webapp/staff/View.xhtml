@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="StaffViewDlg" widgetVar="StaffViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewStaffTitle}">
+            <h:form id="StaffViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{staffController.selected != null}">
+                        <h:outputText value="#{bundle.ViewStaffLabel_designation}"/>
+                        <h:outputText value="#{staffController.selected.designation}" title="#{bundle.ViewStaffTitle_designation}"/>
+                        <h:outputText value="#{bundle.ViewStaffLabel_institution}"/>
+                        <h:outputText value="#{staffController.selected.institution.name}" title="#{bundle.ViewStaffTitle_institution}"/>
+                        <h:outputText value="#{bundle.ViewStaffLabel_tittle}"/>
+                        <h:outputText value="#{staffController.selected.tittle}" title="#{bundle.ViewStaffTitle_tittle}"/>
+                        <h:outputText value="#{bundle.ViewStaffLabel_name}"/>
+                        <h:outputText value="#{staffController.selected.name}" title="#{bundle.ViewStaffTitle_name}"/>
+                        <h:outputText value="#{bundle.ViewStaffLabel_gender}"/>
+                        <h:outputText value="#{staffController.selected.gender}" title="#{bundle.ViewStaffTitle_gender}"/>
+                        <h:outputText value="#{bundle.ViewStaffLabel_age}"/>
+                        <h:outputText value="#{staffController.selected.age}" title="#{bundle.ViewStaffTitle_age}"/>
+                        <h:outputText value="#{bundle.ViewStaffLabel_code}"/>
+                        <h:outputText value="#{staffController.selected.code}" title="#{bundle.ViewStaffTitle_code}"/>
+                        <h:outputText value="#{bundle.ViewStaffLabel_comments}"/>
+                        <h:outputText value="#{staffController.selected.comments}" title="#{bundle.ViewStaffTitle_comments}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="StaffViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
