@@ -127,59 +127,68 @@ public class TrainingStaffController implements Serializable {
         System.out.println("getStaffs() = " + getStaffs());
 
         System.out.println("************");
-
-        if (getStaffs() == null || getTraining() == null) {
-            JsfUtil.addErrorMessage("Nothing To Add");
-            System.out.println("Nothing To Add");
-        } else {
-
-            for (Staff staff : getStaffs()) {
-
-                Staff stf = staff;
-                Training trning = getTraining();
-
-                System.out.println("Added Succesfully 1");
-
-                System.out.println("getSelected().getId() = " + getSelected().getId());
-
-                System.out.println("staff = " + staff);
-
-                System.out.println("getTraining() = " + getTraining());
-
-                System.out.println("getStartOfTrainingPeriod() = " + getStartOfTrainingPeriod());
-
-                System.out.println("getEndOfTrainingPeriod() = " + getEndOfTrainingPeriod());
-
-                System.out.println("stf = " + stf);
-
-                System.out.println("trning = " + trning);
-
-                getSelected().setStaff(stf);
-
-                System.out.println("Added Succesfully 2");
-
-                getSelected().setTraining(trning);
-
-                System.out.println("Added Succesfully 3");
-
-                getSelected().setStartOfTrainingPeriod(getStartOfTrainingPeriod());
-
-                System.out.println("Added Succesfully 4");
-
-                getSelected().setEndOfTrainingPeriod(getEndOfTrainingPeriod());
-
-                System.out.println("Added Succesfully 5");
-
-                getTrainingStaffFacade().create(selected);
-
-                System.out.println("Added Succesfully 6");
-
-                System.out.println("Added Succesfully 7");
-
-            }
-            JsfUtil.addSuccessMessage("Added Succesfully");
-            prepareCreate();
+        
+        for (Staff s : getStaffs()) {
+            TrainingStaff ts = new TrainingStaff();
+            ts.setStaff(s);
+            ts.setTraining(getTraining());
+            ts.setStartOfTrainingPeriod(getStartOfTrainingPeriod());
+            ts.setEndOfTrainingPeriod(getEndOfTrainingPeriod());
+            getEjbFacade().create(ts);
+            System.out.println("Added");
         }
+//        if (getStaffs() == null || getTraining() == null) {
+//            JsfUtil.addErrorMessage("Nothing To Add");
+//            System.out.println("Nothing To Add");
+//        } else {
+//
+//            for (Staff staff : getStaffs()) {
+//
+//                Staff stf = staff;
+//                Training trning = getTraining();
+//
+//                System.out.println("Added Succesfully 1");
+//
+//                System.out.println("getSelected().getId() = " + getSelected().getId());
+//
+//                System.out.println("staff = " + staff);
+//
+//                System.out.println("getTraining() = " + getTraining());
+//
+//                System.out.println("getStartOfTrainingPeriod() = " + getStartOfTrainingPeriod());
+//
+//                System.out.println("getEndOfTrainingPeriod() = " + getEndOfTrainingPeriod());
+//
+//                System.out.println("stf = " + stf);
+//
+//                System.out.println("trning = " + trning);
+//
+//                getSelected().setStaff(stf);
+//
+//                System.out.println("Added Succesfully 2");
+//
+//                getSelected().setTraining(trning);
+//
+//                System.out.println("Added Succesfully 3");
+//
+//                getSelected().setStartOfTrainingPeriod(getStartOfTrainingPeriod());
+//
+//                System.out.println("Added Succesfully 4");
+//
+//                getSelected().setEndOfTrainingPeriod(getEndOfTrainingPeriod());
+//
+//                System.out.println("Added Succesfully 5");
+//
+//                getTrainingStaffFacade().create(selected);
+//
+//                System.out.println("Added Succesfully 6");
+//
+//                System.out.println("Added Succesfully 7");
+//
+//            }
+//            JsfUtil.addSuccessMessage("Added Succesfully");
+//            prepareCreate();
+//        }
     }
 
     List<TrainingStaff> staffTrainingList;
@@ -192,21 +201,25 @@ public class TrainingStaffController implements Serializable {
         this.staffTrainingList = staffTrainingList;
     }
 
-    public List<TrainingStaff> listTrainingStaff() {
+    public List<Staff> listTrainingStaff() {
         String sql;
         Map m = new HashMap();
+        List<Staff> staffs = new ArrayList<Staff>();
         m.put("tr", getTraining());
-        sql = "select ts.staff.id from TrainingStaff ts "
+        sql = "select ts.staff from TrainingStaff ts "
                 + " where ts.training =:tr";
 
-        staffTrainingList = getEjbFacade().findBySQL(sql, m);
-        System.out.println("staffTrainingList = " + staffTrainingList);
-        return staffTrainingList;
+        staffs = getStaffFacade().findBySQL(sql, m);
+        System.out.println("staffs = " + staffs);
+        return staffs;
     }
 
     List<Staff> staffToTrainngList;
 
     public List<Staff> getStaffToTrainngList() {
+        if(staffToTrainngList == null){
+            staffToTrainngList = new ArrayList<Staff>();
+        }
         return staffToTrainngList;
     }
 
@@ -216,14 +229,17 @@ public class TrainingStaffController implements Serializable {
 
     public List<Staff> createStaffToTraining() {
         String sql;
-        List<TrainingStaff> trs = listTrainingStaff();
+        List<Staff> trs = listTrainingStaff();
         System.out.println("trs = " + trs);
         Map m = new HashMap();
-        m.put("tr", trs);
-        sql = "select s from Staff s "
-                + " where s.id not in :tr";
+//        m.put("tr", trs);
+        sql = "select s from Staff s ";
+//        sql = "select s from Staff s "
+//                + " where s.id not in :tr";
 
         staffToTrainngList = getStaffFacade().findBySQL(sql, m);
+        System.out.println("staffToTrainngList = " + staffToTrainngList);
+        staffToTrainngList.removeAll(trs);
         System.out.println("staffToTrainngList = " + staffToTrainngList);
 
         return staffToTrainngList;

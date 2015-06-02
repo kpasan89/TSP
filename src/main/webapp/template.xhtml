@@ -11,7 +11,7 @@
         <h:outputStylesheet library="css" name="jsfcrud.css"/>
         <h:outputScript library="js" name="jsfcrud.js"/>
     </h:head>
-
+    
     <h:body>
 
         <p:growl id="growl" life="3000" />
@@ -28,8 +28,8 @@
                             <p:menuitem value="Person" outcome="/person/List.xhtml" />
                             <p:menuitem value="Staff" outcome="/staff/List.xhtml" />
                             <p:menuitem value="Training" outcome="/training/List.xhtml" />
-                            <p:menuitem value="Training Assign for Staff" outcome="/trainingStaff/List.xhtml" />
-                            <p:menuitem value="Training Bulk Assign" outcome="/trainingStaff/List_Selection.xhtml" />
+                            <p:menuitem value="Training Assign for Staff" outcome="/trainingStaff/List.xhtml" action=":TrainingStaffListForm:datalist"/>
+                            <p:menuitem value="Training Bulk Assign" outcome="/trainingStaff/List_Selection.xhtml"/>
                         </p:submenu>
                     </p:menubar>
                     <p:sticky target="menu" />
