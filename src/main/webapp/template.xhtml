@@ -11,7 +11,7 @@
         <h:outputStylesheet library="css" name="jsfcrud.css"/>
         <h:outputScript library="js" name="jsfcrud.js"/>
     </h:head>
-    
+
     <h:body>
 
         <p:growl id="growl" life="3000" />
@@ -28,7 +28,7 @@
                             <p:menuitem value="Person" outcome="/person/List.xhtml" />
                             <p:menuitem value="Staff" outcome="/staff/List.xhtml" />
                             <p:menuitem value="Training" outcome="/training/List.xhtml" />
-                            <p:menuitem value="Training Assign for Staff" outcome="/trainingStaff/List.xhtml" action=":TrainingStaffListForm:datalist"/>
+                            <p:menuitem value="Training Assign for Staff" outcome="/trainingStaff/List.xhtml" action=":TrainingStaffListForm:datalist" actionListener="#{trainingStaffController.items}"/>
                             <p:menuitem value="Training Bulk Assign" outcome="/trainingStaff/List_Selection.xhtml"/>
                         </p:submenu>
                     </p:menubar>
@@ -44,7 +44,10 @@
                 <ui:insert name="body">
                     <h:form id="TrainingStaffListForm">
                         <p:panel header="#{bundle.ListTrainingStaffTitleHome}">
-                            <p:dataTable id="datalist" value="#{trainingStaffController.items}" var="item">
+                            <f:facet name="header">
+                                <p:commandButton value="Fill" ajax="false" action="#{trainingStaffController.showTable}" style="float: left"></p:commandButton>
+                            </f:facet>
+                            <p:dataTable id="datalist" value="#{trainingStaffController.staffTrainingList}" var="item">
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="#{bundle.ListTrainingStaffTitle_staff}"/>

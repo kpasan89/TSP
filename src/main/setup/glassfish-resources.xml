@@ -10,5 +10,5 @@
         <property name="URL" value="jdbc:mysql://localhost:3306/tsp?zeroDateTimeBehavior=convertToNull"/>
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
     </jdbc-connection-pool>
-    <jdbc-resource enabled="true" jndi-name="tspdb2" object-type="user" pool-name="mysql_tsp_rootPool"/>
+    <jdbc-resource enabled="true" jndi-name="tspdb3" object-type="user" pool-name="mysql_tsp_rootPool"/>
 </resources>
