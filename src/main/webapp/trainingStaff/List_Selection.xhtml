@@ -25,7 +25,7 @@
                                            itemValue="#{trainingItem}"
                                            itemLabel="#{trainingItem.name} ----- #{trainingItem.duration} Years"/>
                         </p:selectOneMenu>
-                        <p:commandButton action="#{trainingStaffController.createStaffToTraining()}" ajax="false" value="Fill Staff"></p:commandButton>
+                        <p:commandButton actionListener="#{trainingStaffController.createStaffToTraining()}" ajax="false" value="Fill Staff"></p:commandButton>
                     </h:panelGrid>
                     <h:panelGrid columns="2">
                         <p:outputLabel value="#{bundle.CreateTrainingStaffLabel_startOfTrainingPeriod}" for="startOfTrainingPeriod" />
@@ -36,9 +36,7 @@
                     </h:panelGrid>
                     
                     <p:dataTable id="datalist" var="stf" value="#{trainingStaffController.staffToTrainngList}" selection="#{trainingStaffController.staffs}" rowKey="#{stf.id}" style="margin-bottom:0">
-                        <f:facet name="header">
-                            <p:outputLabel value="Selection"/>
-                            <p:spacer width="30px"></p:spacer>
+                        <f:facet name="footer">
                             <p:commandButton action="#{trainingStaffController.staffBulkTraining()}" ajax="false" value="Save" ></p:commandButton>
                         </f:facet>
                         <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
@@ -47,6 +45,9 @@
                         </p:column>
                         <p:column headerText="Name">
                             <h:outputText value="#{stf.name}" />
+                        </p:column>
+                        <p:column headerText="Institution">
+                            <h:outputText value="#{stf.institution.name}" />
                         </p:column>
                         <p:column headerText="Code">
                             <h:outputText value="#{stf.code}" />

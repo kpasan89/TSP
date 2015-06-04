@@ -189,15 +189,11 @@ public class TrainingStaffController implements Serializable {
         List<Staff> trs = listTrainingStaff();
         System.out.println("trs = " + trs);
         Map m = new HashMap();
-//        m.put("tr", trs);
         sql = "select s from Staff s ";
-//        sql = "select s from Staff s "
-//                + " where s.id not in :tr";
-
         staffToTrainngList = getStaffFacade().findBySQL(sql, m);
         System.out.println("staffToTrainngList = " + staffToTrainngList);
         staffToTrainngList.removeAll(trs);
-        System.out.println("staffToTrainngList = " + staffToTrainngList);
+        System.out.println("staffToTrainngListRemoved = " + staffToTrainngList);
 
         return staffToTrainngList;
     }
