@@ -23,7 +23,7 @@
                             <f:selectItems value="#{trainingController.itemsAvailableSelectOne}"
                                            var="trainingItem"
                                            itemValue="#{trainingItem}"
-                                           itemLabel="#{trainingItem.name} ----- #{trainingItem.duration} Years"/>
+                                           itemLabel="#{trainingItem.name} ----- #{trainingItem.duration} #{trainingItem.monthsYears}"/>
                         </p:selectOneMenu>
                         <p:commandButton actionListener="#{trainingStaffController.createStaffToTraining()}" ajax="false" value="Fill Staff"></p:commandButton>
                     </h:panelGrid>

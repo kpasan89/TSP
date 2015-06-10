@@ -106,6 +106,12 @@ public class TrainingStaffController implements Serializable {
         initializeEmbeddableKey();
         return selected;
     }
+    public void clearWindow(){
+        staffToTrainngList = new ArrayList<Staff>();
+        training = new Training();
+        startOfTrainingPeriod = new Date();
+        endOfTrainingPeriod = new Date();
+    }
 
     public void staffBulkTraining() {
 
@@ -139,7 +145,7 @@ public class TrainingStaffController implements Serializable {
             System.out.println("Added");
         }
         JsfUtil.addSuccessMessage(+a + " Record(s) Succesfully Added");
-        prepareCreate();
+        clearWindow();
     }
 
     List<TrainingStaff> staffTrainingList;
