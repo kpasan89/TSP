@@ -23,18 +23,21 @@
                             <f:selectItems value="#{trainingController.itemsAvailableSelectOne}"
                                            var="trainingItem"
                                            itemValue="#{trainingItem}"
-                                           itemLabel="#{trainingItem.name} ----- #{trainingItem.duration} Years"/>
+                                           itemLabel="#{trainingItem.name} ----- #{trainingItem.duration} Day(s)"/>
                         </p:selectOneMenu>
-                        <p:commandButton action="#{trainingStaffController.createStaffToTraining()}" ajax="false" value="Fill Staff"></p:commandButton>
+
                     </h:panelGrid>
                     <h:panelGrid columns="2">
                         <p:outputLabel value="#{bundle.CreateTrainingStaffLabel_startOfTrainingPeriod}" for="startOfTrainingPeriod" />
-                        <p:calendar id="startOfTrainingPeriod" pattern="MM/dd/yyyy" value="#{trainingStaffController.startOfTrainingPeriod}" title="#{bundle.EditTrainingStaffTitle_startOfTrainingPeriod}"  showOn="button"/>
+                        <p:calendar id="startOfTrainingPeriod" pattern="MM/dd/yyyy" value="#{trainingStaffController.startOfTrainingPeriod}" title="#{bundle.EditTrainingStaffTitle_startOfTrainingPeriod}"  showOn="button">
+                        </p:calendar>
                         <p:outputLabel value="#{bundle.CreateTrainingStaffLabel_endOfTrainingPeriod}" for="endOfTrainingPeriod" />
-                        <p:calendar id="endOfTrainingPeriod" pattern="MM/dd/yyyy" value="#{trainingStaffController.endOfTrainingPeriod}" title="#{bundle.EditTrainingStaffTitle_endOfTrainingPeriod}"  showOn="button"/>
-                        
+                        <p:outputLabel id="endOfTrainingPeriod" value="#{trainingStaffController.endOfTrainingPeriod}" style="color: green">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </p:outputLabel>
+                        <p:commandButton actionListener="#{trainingStaffController.createStaffToTraining()}" ajax="false" value="Fill Staff"></p:commandButton>
                     </h:panelGrid>
-                    
+
                     <p:dataTable id="datalist" var="stf" value="#{trainingStaffController.staffToTrainngList}" selection="#{trainingStaffController.staffs}" rowKey="#{stf.id}" style="margin-bottom:0">
                         <f:facet name="header">
                             <p:outputLabel value="Selection"/>

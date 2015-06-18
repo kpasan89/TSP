@@ -10,7 +10,12 @@ package lk.gov.sp.healthdept.enums;
  * @author pdhs-sp
  */
 public enum Designation {
-    Doctor,
+    MOH,
+    Medical_Officer,
+    PHNS,
+    SPHI,
     Nurse,
+    PHI,
+    SPHM,
     PHM,
 }

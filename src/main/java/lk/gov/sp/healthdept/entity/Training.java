@@ -25,7 +25,7 @@ public class Training implements Serializable {
     private Long id;
     private String name;
     private String code;
-    private String duration;
+    private int duration;
     @Lob
     private String comments;
 
@@ -78,13 +78,15 @@ public class Training implements Serializable {
         this.code = code;
     }
 
-    public String getDuration() {
+    public int getDuration() {
         return duration;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
+
+    
 
     public String getComments() {
         return comments;

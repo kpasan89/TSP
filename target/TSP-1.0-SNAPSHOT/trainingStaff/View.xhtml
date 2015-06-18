@@ -20,10 +20,6 @@
                         <h:outputText value="#{trainingStaffController.selected.startOfTrainingPeriod}" title="#{bundle.ViewTrainingStaffTitle_startOfTrainingPeriod}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewTrainingStaffLabel_endOfTrainingPeriod}"/>
-                        <h:outputText value="#{trainingStaffController.selected.endOfTrainingPeriod}" title="#{bundle.ViewTrainingStaffTitle_endOfTrainingPeriod}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="TrainingStaffViewDialog.hide()"/>
                 </h:panelGroup>

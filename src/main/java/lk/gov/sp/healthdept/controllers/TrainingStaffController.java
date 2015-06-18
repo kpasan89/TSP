@@ -6,7 +6,10 @@ import lk.gov.sp.healthdept.controllers.util.JsfUtil.PersistAction;
 import lk.gov.sp.healthdept.facade.TrainingStaffFacade;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -105,6 +108,18 @@ public class TrainingStaffController implements Serializable {
         selected = new TrainingStaff();
         initializeEmbeddableKey();
         return selected;
+    }
+    public Date createEndDate(){
+        endOfTrainingPeriod = addDays(getStartOfTrainingPeriod(), getTraining().getDuration());
+        return endOfTrainingPeriod;
+    }
+
+    public Date addDays(Date date, int days) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, days);
+
+        return cal.getTime();
     }
 
     public void staffBulkTraining() {
@@ -285,6 +300,7 @@ public class TrainingStaffController implements Serializable {
         if (endOfTrainingPeriod == null) {
             endOfTrainingPeriod = new Date();
         }
+        endOfTrainingPeriod = addDays(getStartOfTrainingPeriod(), getTraining().getDuration());
         return endOfTrainingPeriod;
     }
 

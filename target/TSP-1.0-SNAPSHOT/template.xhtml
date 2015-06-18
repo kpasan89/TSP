@@ -48,7 +48,7 @@
                             <f:facet name="header">
                                 <p:commandButton value="Fill" ajax="false" action="#{trainingStaffController.showTable}" style="float: left"></p:commandButton>
                             </f:facet>
-                            <p:dataTable id="datalist" value="#{trainingStaffController.staffTrainingList}" var="item">
+                            <p:dataTable id="datalist" value="#{trainingStaffController.staffTrainingList}" var="item" >
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="#{bundle.ListTrainingStaffTitle_staff}"/>
