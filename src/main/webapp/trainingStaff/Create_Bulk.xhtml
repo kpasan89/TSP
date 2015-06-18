@@ -18,7 +18,7 @@
                             <f:selectItems value="#{trainingController.itemsAvailableSelectOne}"
                                            var="trainingItem"
                                            itemValue="#{trainingItem}"
-                                           itemLabel="#{trainingItem.name} ----- #{trainingItem.duration} Years"/>
+                                           itemLabel="#{trainingItem.name} ----- #{trainingItem.duration} #{trainingItem.monthsYears}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateTrainingStaffLabel_startOfTrainingPeriod}" for="startOfTrainingPeriod" />
                         <p:calendar id="startOfTrainingPeriod" pattern="MM/dd/yyyy" value="#{trainingStaffController.startOfTrainingPeriod}" title="#{bundle.EditTrainingStaffTitle_startOfTrainingPeriod}"  showOn="button"/>

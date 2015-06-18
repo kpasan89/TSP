@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
 
     <ui:composition>
 
@@ -17,6 +18,12 @@
                         <p:inputText id="code" value="#{trainingController.selected.code}" title="#{bundle.CreateTrainingTitle_code}" />
                         <p:outputLabel value="#{bundle.CreateTrainingLabel_duration}" for="duration" />
                         <p:inputText id="duration" value="#{trainingController.selected.duration}" title="#{bundle.CreateTrainingTitle_duration}" />
+                        <p:outputLabel></p:outputLabel>
+                        <p:selectOneMenu id="designation" value="#{trainingController.selected.monthsYears}" >
+                            <f:selectItems value="#{enumController.durations}"
+                                           var="item"
+                                           itemValue="#{item}"/>
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateTrainingLabel_comments}" for="comments" />
                         <p:inputTextarea rows="4" cols="30" id="comments" value="#{trainingController.selected.comments}" title="#{bundle.CreateTrainingTitle_comments}" />
                     </p:panelGrid>

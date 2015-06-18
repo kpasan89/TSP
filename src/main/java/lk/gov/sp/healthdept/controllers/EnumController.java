@@ -8,6 +8,7 @@ package lk.gov.sp.healthdept.controllers;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ApplicationScoped;
 import lk.gov.sp.healthdept.enums.Designation;
+import lk.gov.sp.healthdept.enums.Duration;
 import lk.gov.sp.healthdept.enums.Gender;
 import lk.gov.sp.healthdept.enums.Tittle;
 
@@ -33,5 +34,9 @@ public class EnumController {
     }
     public Designation[] getDesignations(){
         return Designation.values();
+    }
+    
+    public Duration[] getDurations(){
+        return  Duration.values();
     }
 }

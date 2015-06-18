@@ -8,10 +8,13 @@ package lk.gov.sp.healthdept.entity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import lk.gov.sp.healthdept.enums.Duration;
 
 /**
  *
@@ -28,6 +31,8 @@ public class Training implements Serializable {
     private int duration;
     @Lob
     private String comments;
+    @Enumerated(EnumType.STRING)
+    private Duration monthsYears;
 
     public Long getId() {
         return id;
@@ -94,6 +99,14 @@ public class Training implements Serializable {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public Duration getMonthsYears() {
+        return monthsYears;
+    }
+
+    public void setMonthsYears(Duration monthsYears) {
+        this.monthsYears = monthsYears;
     }
     
 }
